@@ -21,11 +21,11 @@ h1   {border: 1px solid powderblue;
 </head>
 
 <body style="margin-left: 40px; margin-right: 40px;">
-  <h1 align="center">Glossary of Key Terms</h1>
+  <h1 align="center">ГЛОССАРИЙ ТЕРМИНОВ</h1>
   <table class="hover row-border order-column" id="example" style="width:100%">
 	<thead>
 		<tr>
-			<th>Глоссарий</th>
+			<th>Термин</th>
 			<th>Определение</th>
 		</tr>
 	</thead>
@@ -345,20 +345,39 @@ h1   {border: 1px solid powderblue;
   
   <script type="text/javascript">
     $(document).ready(function() {
-    $('#example').DataTable( {
-       // "paging":   false,
-       "pageLength": 50,
+      var table = $('#example').DataTable({
+        //responsive: true,
+        //paging: false,
+		"pageLength": 50,
+        order: [[ 0, 'asc' ]],
         columns: [
           { width: '20%' },
           { width: '80%' }
         ],
-      	} );
+			"language": {
+            "lengthMenu": "Показано _MENU_ записей",
+            "zeroRecords": "Совпадающих записей не найдено",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "Нет доступных записей",
+            "infoFiltered": "(отфильтровано из _MAX_ общих записей)",
+			"sInfo":         	"Показано _END_ из _TOTAL_ записей",
+			"sSearch":       	"Поиск",
+			"sZeroRecords":  	"Совпадающих записей не найдено",
+			"oPaginate": {
+				"sFirst":    	"Первая",
+				"sPrevious": 	"Предыдущая",
+				"sNext":     	"Следующая",
+				"sLast":     	"Последняя"
+				}
+        	}
+      });
+      new $.fn.dataTable.FixedHeader( table );
+    });
     $('#example').on( 'page.dt', function () {
       $('html, body').animate({
           scrollTop: 0
-        }, 300);
-		    } );
-    } );
+      }, 300);
+		} );
   </script>
 </body>
 
